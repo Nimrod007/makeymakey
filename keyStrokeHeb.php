@@ -6,12 +6,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 <script>
+var input="";
 document.addEventListener('keydown', function(event) {
 	var keyStroke=event.keyCode;
 	switch (keyStroke)
 	{
-	case 65:
-	  x="ש"; //A
+	case 8: //backspace
+		input = input.slice(0, -1);
+		  break;
+	case 32: //space
+	  x=" "; 
+	  break;
+	case 65: //A
+	  x="ש"; 
 	  break;
 	case 66: //B
 	  x="נ";
@@ -88,19 +95,22 @@ document.addEventListener('keydown', function(event) {
 	case 90: //Z
 	  x="ז";
 	  break;
-	case 62: //>
+	case 190: //>
 	  x="ץ";
 	  break;
-	case 60: //<
+	case 188: //<
 	  x="ת";
 	  break;
 	case 59: //;
 	  x="ף";
 	  break;
+	default:
+	  x="";
+	  break;
 	} 
+	input = input + x;
         var fieldNameElement = document.getElementById('key');
-        fieldNameElement.innerHTML = x;
-
+        fieldNameElement.innerHTML = input;
 }, true);
 </script>
 </head>
