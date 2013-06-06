@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8" />
 <script>
 document.addEventListener('keydown', function(event) {
 
