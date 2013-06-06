@@ -5,8 +5,31 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<script src="jquery.js"></script>
 <script>
 var input="";
+$(document).unbind('keydown').bind('keydown', function (event) {
+	
+    var doPrevent = false;
+    if (event.keyCode === 8) {
+        var d = event.srcElement || event.target;
+        if ((d.tagName.toUpperCase() === 'INPUT' && (d.type.toUpperCase() === 'TEXT' || d.type.toUpperCase() === 'PASSWORD')) 
+             || d.tagName.toUpperCase() === 'TEXTAREA') {
+            doPrevent = d.readOnly || d.disabled;
+        }
+        else {
+            doPrevent = true;
+        }
+    }
+
+    if (doPrevent) {
+    	input = input.slice(0, -1);
+        var fieldNameElement = document.getElementById('key');
+        fieldNameElement.innerHTML = input;
+        event.preventDefault();
+    }
+});
+
 document.addEventListener('keydown', function(event) {
 	var keyStroke=event.keyCode;
 	switch (keyStroke)
@@ -115,6 +138,13 @@ document.addEventListener('keydown', function(event) {
 </script>
 </head>
 <body>
-<div id="key">press a key</div>
+
+<div id="key" style="position:fixed;
+  z-index: 100;  
+  top:50%;  
+  left:50%;  
+  margin:-100px 0 0 -100px;  
+  width:200px;  
+  height:200px; " >press a key</div>
 </body>
 </html>
